@@ -18,17 +18,20 @@ $ bun i snoway-api
 
 ```js
 const SnowayAPI = require('snoway-api');
-const api = new SnowayAPI("Your api key");
+const api = new SnowayAPI("Your API key");
 
 async function main() {
     // Return prevnames
+    await api.allPrevnames('User ID')
+        .then((response) => console.log(response));
+    // Return count
     await api.getNames('User ID')
-    .then((response) => console.log(response));
+        .then((response) => console.log(response));
     // Return count
     await api.count()
         .then((response) => console.log(response));
-    console.log('Fetched data successfully !');
-};
+    console.log('Fetched data successfully!');
+}
 
 main();
 ```
