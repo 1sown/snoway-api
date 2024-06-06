@@ -31,10 +31,34 @@ module.exports = class SnowayAPI {
         else return data.data;
     };
 
+    /**
+       *
+       * @param {String} userID
+       * @returns {Promise<Object|null>}
+       */
+
+    async allPrevnames(userID) {
+        const response = await fetch(config.endpoint + "/api/" + config.version + "allprevnames", {
+            method: "POST",
+            headers: {
+                'Authorization': this.#apiKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: userID,
+            })
+        });
+
+        const data = await response.json();
+
+        if (!data) return null
+        else return data.data;
+    };
+
 
     async count() {
         const response = await fetch(config.endpoint + "/api/" + config.version + "/prevname/count", {
-            method: "POST",
+            method: "GET",
             headers: {
                 'Authorization': this.#apiKey,
                 'Content-Type': 'application/json'
